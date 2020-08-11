@@ -2,7 +2,7 @@
   "name": "phunkytoonz",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./client/index.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cross-env NODE_ENV=production nodemon server/server.js",
@@ -31,7 +31,8 @@
     "pg": "^8.3.0",
     "react": "^16.2.0",
     "react-dom": "^16.3.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "styled-components": "^5.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",
