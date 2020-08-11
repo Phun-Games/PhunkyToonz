@@ -4,7 +4,9 @@ const cookieparser = require('cookie-parser');
 
 const app = express();
 
-const PORT = ;
+const PORT = 3000;
+
+const apiRouter = require('./routes/api.js');
 
 /*
 import controllers
@@ -27,26 +29,46 @@ app.use(cookieparser());
 app.use('/folder', express.static(path.join(__dirname, '../folder')));
 
 
-// functional routes
-
+/**
+ * functional routes
+ */
+app.use('/api', apiRouter);
 
 
 /*
  * signin routings
  */
-app.post('/signin',
+app.post('/login',
   authController.verifyUser,
   authController.setCookie,
   (req, res) => {
     console.log('access granted');
     // console.log('form content: ', req.body); // -> {user: "", pass: ""}
     res.redirect('./secret');
-  }
+  },
 );
 
 
 /*
- * root routes index.html and secret.html
+ * signin routings
+ */
+app.post('/signup',
+  authController.verifyUser,
+  authController.setCookie,
+  (req, res) => {
+    console.log('access granted');
+    // console.log('form content: ', req.body); // -> {user: "", pass: ""}
+    res.redirect('./secret');
+  });
+
+
+app.get('/game', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/index.html'));
+});
+
+
+/*
+ * root routes index.html and game.html
  */
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/index.html'));
