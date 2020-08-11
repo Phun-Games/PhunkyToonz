@@ -1,0 +1,106 @@
+const path = require('path');
+const express = require('express');
+const cookieparser = require('cookie-parser');
+
+const app = express();
+
+const PORT = ;
+
+/*
+import controllers
+*/
+const someController = require('./controllers/someController');
+const authController = require('./controllers/authController');
+
+
+/**
+ * global parsers
+ */
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieparser());
+
+
+/**
+ * handle requests for static files
+ */
+app.use('/folder', express.static(path.join(__dirname, '../folder')));
+
+
+// functional routes
+
+
+
+/*
+ * signin routings
+ */
+app.post('/signin',
+  authController.verifyUser,
+  authController.setCookie,
+  (req, res) => {
+    console.log('access granted');
+    // console.log('form content: ', req.body); // -> {user: "", pass: ""}
+    res.redirect('./secret');
+  }
+);
+
+
+/*
+ * root routes index.html and secret.html
+ */
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/index.html'));
+});
+
+
+
+//  ------------------------------------------------------------
+
+
+/*
+ *  catch-all route handler for any requests to an unknown route
+ */
+app.use((req, res, next) => {
+  // could do something here?
+  // console.log('want to do some other things instead?')
+  // res.status(404).send('Page Not Found');
+  res.status(404).send('this is 404 from server.js');
+});
+
+
+/**
+ * configire express global error handler
+ * @see https://expressjs.com/en/guide/error-handling.html#writing-error-handlers
+ */
+// eslint-disable-next-line no-unused-vars
+
+app.use((err, req, res, next) => {
+  const defaultErr = {
+    log: 'Express global error handler caught unknown middleware error',
+    status: 400,
+    message: { err: 'An error occurred' },
+  };
+  const errObj = Object.assign(defaultErr, err);
+  console.log(errObj);
+  res.status(errObj.status).send(errObj.message);
+});
+
+
+if (process.env.NODE_ENV === 'production') {
+  // statically serve everything in the build folder on the route '/build'
+  app.use('/build', express.static(path.join(__dirname, '../build')));
+  // serve index.html on the route '/'
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../index.html'));
+  });
+}
+
+
+/**
+ * start server
+ */
+app.listen(PORT, () => {
+  console.log(`Server listening on port: ${PORT}`);
+});
+
+module.exports = app;
