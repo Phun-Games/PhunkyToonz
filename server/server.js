@@ -11,7 +11,7 @@ const apiRouter = require('./routes/api.js');
 /*
 import controllers
 */
-const someController = require('./controllers/someController');
+// const someController = require('./controllers/someController');
 const authController = require('./controllers/authController');
 
 /**
@@ -34,6 +34,7 @@ app.use('/api', apiRouter);
 /*
  * signin routings
  */
+// check if user exists, check if 
 app.post(
   '/login',
   authController.verifyUser,
@@ -42,7 +43,7 @@ app.post(
     console.log('access granted');
     // console.log('form content: ', req.body); // -> {user: "", pass: ""}
     res.redirect('./secret');
-  }
+  },
 );
 
 /*
@@ -56,19 +57,21 @@ app.post(
     console.log('access granted');
     // console.log('form content: ', req.body); // -> {user: "", pass: ""}
     res.redirect('./secret');
-  }
+  },
 );
 
-app.get('/game', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/index.html'));
-});
+// app.get('/game', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/index.html'));
+// });
 
 /*
  * root routes index.html and game.html
  */
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/index.html'));
-});
+app.get('/',
+  authController.checkCookie,
+  (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/index.html'));
+  });
 
 //  ------------------------------------------------------------
 
