@@ -24,7 +24,7 @@ CREATE TABLE Session (
 
 CREATE TABLE Current_game (
     id SERIAL PRIMARY KEY,
-    user_id varchar(255),
+    session_id int,
     song1 varchar(255),
     song2 varchar(255),
     song3 varchar(255),

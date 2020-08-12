@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import { SpotifyBtn, Button, Label, Title, Input } from './StyledElements';
 import { CLIENT_ID, CLIENT_SECRET } from './sensitive.js';
+
+// import CLIENT_SECRET from './sensitive.js';
+// import CLIENT_ID from './sensitive.js';
 
 const Login = (props) => {
   const spotifyLogin = (e) => {
