@@ -42,13 +42,13 @@ router.post('/song',
 // use token/session_id to query Users table
 // write query to update hiscore in table
 // send back hiscore
-// router.post('/hiscore',
-//   (req, res) => {});
+router.post('/hiscore',
+  (req, res) => {});
 
-// // GET 'api/hiscore'
-// // use token/session_id to query Users table
-// // send back hiscore
-// router.get('/hiscore',
-// (req, res) => {});
+// GET 'api/hiscore'
+// use token/session_id to query Users table
+// send back hiscore
+router.get('/hiscore',
+(req, res) => {});
 
 module.exports = router;
