@@ -14,6 +14,15 @@ import controllers
 // const someController = require('./controllers/someController');
 const authController = require('./controllers/authController');
 
+
+app.use((req, res, next) => {
+  console.log(`
+  ********* FLOW TEST *********\n
+  METHOD: ${req.method}\n
+  URL: ${req.url}\n
+  BODY: ${JSON.stringify(req.body)}\n`);
+  return next();
+});
 /**
  * global parsers
  */
@@ -31,9 +40,9 @@ app.use('/folder', express.static(path.join(__dirname, '../folder')));
  */
 app.use('/api', apiRouter);
 
-app.get('/spotifyAuth', authController.spotifyAuth, (req, res) => {
-  res.status(200).send('got a response back :)!');
-});
+// app.get('/spotifyAuth', authController.spotifyAuth, (req, res) => {
+//   res.status(200).send('got a response back :)!');
+// });
 
 /*
  * signin routings
@@ -71,7 +80,7 @@ app.post(
 /*
  * root routes index.html and game.html
  */
-app.get('/', authController.checkCookie, (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 

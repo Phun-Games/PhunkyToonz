@@ -12,7 +12,7 @@ const Login = (props) => {
     // )
     //   .then((res) => res.json())
     //   .then((result) => console.log(result));
-    fetch('/spotifyAuth')
+    fetch('/api/spotifyAuth')
       .then((res) => res.json())
       .then((result) => console.log(result))
       .catch(console.log('error in spotifyAuth request'));
