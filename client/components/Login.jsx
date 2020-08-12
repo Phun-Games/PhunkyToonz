@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import CLIENT_SECRET from './sensitive.js';
+import CLIENT_ID from './sensitive.js';
+
 const Login = (props) => {
   const SpotifyBtn = styled.button`
     width: 8em;
