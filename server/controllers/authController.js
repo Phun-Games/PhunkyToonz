@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { CLIENT_ID, CLIENT_SECRET } = require('./sensitive.js');
+const { CLIENT_ID, CLIENT_SECRET } = require('../models/sensitive.js');
 const db = require('../models/userModel');
 
 const authController = {};

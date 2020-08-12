@@ -3,7 +3,8 @@ const express = require('express');
 
 const router = express.Router();
 
-const songController = require('./controllers/songController');
+const songController = require('../controllers/songController');
+const authController = require('../controllers/authController');
 
 // GET "api/song"
 // grab songs from webAPI****
@@ -13,7 +14,10 @@ const songController = require('./controllers/songController');
 // get back song array from Dan**
 // write the song names into Current_game table
 // make the urls into an array
-
+router.get('/spotifyAuth', authController.spotifyAuth, (req, res) => {
+    res.status(200).send('got a response back :)!');
+  });
+  
 // -> send over mp3/4
 router.get('/song',
   songController.validSong,
@@ -46,3 +50,5 @@ router.post('/hiscore',
 // send back hiscore
 router.get('/hiscore',
 (req, res) => {});
+
+module.exports = router;
