@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Login from './Login';
-import Game from './Game';
+import Main from './Main';
 import {
   Switch,
   Route,
@@ -19,21 +19,9 @@ const App = () => {
   // }, []);
 
   if (isLoggedIn) {
-    return <Game />;
+    return <Main />;
   }
-  return (
-    <Login />
-    // <Router>
-    //   <div>
-    //     <Switch>
-    //       {/* <Route component={Game} path="/game" /> */}
-    //       <Route exact path="/">
-    //         <Login />
-    //       </Route>
-    //     </Switch>
-    //   </div>
-    // </Router>
-  );
+  return <Login />;
 };
 
 export default App;

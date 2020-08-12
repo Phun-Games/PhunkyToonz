@@ -8,5 +8,3 @@ router.get('/song', (req, res) => {});
 
 // POST "api/song" > sending answer 'string'
 router.post('/song', (req, res) => {});
-
-
