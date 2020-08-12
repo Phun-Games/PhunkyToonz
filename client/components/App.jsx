@@ -9,10 +9,10 @@ import {
 } from 'react-router-dom';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // immediate fetch '/' to check if in session
-    // useEffect(() => {
+  // useEffect(() => {
   //   // code to run on component mount
   //   fetch('/')
   //     .then((res) => res.json())
