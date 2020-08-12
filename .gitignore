@@ -2,4 +2,9 @@ node_modules
 .DS_Store
 /build
 databaseURI.js
+<<<<<<< HEAD
 sensitive.js
+=======
+sensitive.js
+
+>>>>>>> b9741cd91910c1cd4d6de2e7a699a65dbbadc7b7

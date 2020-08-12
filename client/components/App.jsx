@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Login from './Login';
-import Game from './Game';
+import Main from './Main';
 import {
   Switch,
   Route,
@@ -11,6 +11,14 @@ import {
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // immediate fetch '/' to check if in session
+  // useEffect(() => {
+  //   // code to run on component mount
+  //   fetch('/')
+  //     .then((res) => res.json())
+  //     .then((res) => setIsLoggedIn(res));
+  // }, []);
+
   // useEffect(() => {
   //   // code to run on component mount
   //   fetch('/authenticateSpotify')
@@ -19,21 +27,9 @@ const App = () => {
   // }, []);
 
   if (isLoggedIn) {
-    return <Game />;
+    return <Main />;
   }
-  return (
-    <Login />
-    // <Router>
-    //   <div>
-    //     <Switch>
-    //       {/* <Route component={Game} path="/game" /> */}
-    //       <Route exact path="/">
-    //         <Login />
-    //       </Route>
-    //     </Switch>
-    //   </div>
-    // </Router>
-  );
+  return <Login />;
 };
 
 export default App;

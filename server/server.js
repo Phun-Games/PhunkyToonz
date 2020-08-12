@@ -11,9 +11,8 @@ const apiRouter = require('./routes/api.js');
 /*
 import controllers
 */
-const someController = require('./controllers/someController');
+// const someController = require('./controllers/someController');
 const authController = require('./controllers/authController');
-
 
 /**
  * global parsers
@@ -22,62 +21,61 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieparser());
 
-
 /**
  * handle requests for static files
  */
 app.use('/folder', express.static(path.join(__dirname, '../folder')));
-
 
 /**
  * functional routes
  */
 app.use('/api', apiRouter);
 
-
-/*
- * signin routings
- */
-app.post('/login',
-  authController.verifyUser,
-  authController.setCookie,
-  (req, res) => {
-    console.log('access granted');
-    // console.log('form content: ', req.body); // -> {user: "", pass: ""}
-    res.redirect('./secret');
-  },
-);
-
-
-/*
- * signin routings
- */
-app.post('/signup',
-  authController.verifyUser,
-  authController.setCookie,
-  (req, res) => {
-    console.log('access granted');
-    // console.log('form content: ', req.body); // -> {user: "", pass: ""}
-    res.redirect('./secret');
-  });
-
-
-app.get('/game', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/index.html'));
+app.get('/spotifyAuth', authController.spotifyAuth, (req, res) => {
+  res.status(200).send('got a response back :)!');
 });
 
+/*
+ * signin routings
+ */
+// check if user exists, check if
+app.post(
+  '/login',
+  authController.verifyUser,
+  authController.setCookie,
+  (req, res) => {
+    console.log('access granted');
+    // console.log('form content: ', req.body); // -> {user: "", pass: ""}
+    res.redirect('./secret');
+  }
+);
+
+/*
+ * signin routings
+ */
+app.post(
+  '/signup',
+  authController.verifyUser,
+  authController.setCookie,
+  (req, res) => {
+    console.log('access granted');
+    // console.log('form content: ', req.body); // -> {user: "", pass: ""}
+    res.redirect('./secret');
+  }
+);
+
+// app.get('/game', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/index.html'));
+// });
 
 /*
  * root routes index.html and game.html
  */
-app.get('/', (req, res) => {
+app.get('/', authController.checkCookie, (req, res) => {
   res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-
-
 //  ------------------------------------------------------------
-
 
 /*
  *  catch-all route handler for any requests to an unknown route
@@ -88,7 +86,6 @@ app.use((req, res, next) => {
   // res.status(404).send('Page Not Found');
   res.status(404).send('this is 404 from server.js');
 });
-
 
 /**
  * configire express global error handler
@@ -107,7 +104,6 @@ app.use((err, req, res, next) => {
   res.status(errObj.status).send(errObj.message);
 });
 
-
 if (process.env.NODE_ENV === 'production') {
   // statically serve everything in the build folder on the route '/build'
   app.use('/build', express.static(path.join(__dirname, '../build')));
@@ -116,7 +112,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, '../index.html'));
   });
 }
-
 
 /**
  * start server
