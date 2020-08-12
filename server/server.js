@@ -31,10 +31,14 @@ app.use('/folder', express.static(path.join(__dirname, '../folder')));
  */
 app.use('/api', apiRouter);
 
+app.get('/spotifyAuth', authController.spotifyAuth, (req, res) => {
+  res.status(200).send('got a response back :)!');
+});
+
 /*
  * signin routings
  */
-// check if user exists, check if 
+// check if user exists, check if
 app.post(
   '/login',
   authController.verifyUser,
@@ -43,7 +47,7 @@ app.post(
     console.log('access granted');
     // console.log('form content: ', req.body); // -> {user: "", pass: ""}
     res.redirect('./secret');
-  },
+  }
 );
 
 /*
@@ -57,7 +61,7 @@ app.post(
     console.log('access granted');
     // console.log('form content: ', req.body); // -> {user: "", pass: ""}
     res.redirect('./secret');
-  },
+  }
 );
 
 // app.get('/game', (req, res) => {
@@ -67,11 +71,9 @@ app.post(
 /*
  * root routes index.html and game.html
  */
-app.get('/',
-  authController.checkCookie,
-  (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/index.html'));
-  });
+app.get('/', authController.checkCookie, (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/index.html'));
+});
 
 //  ------------------------------------------------------------
 

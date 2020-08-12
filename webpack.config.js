@@ -12,7 +12,8 @@ module.exports = {
   devServer: {
     contentBase: './client',
     proxy: {
-      '/api': 'http://localhost:3000',
+      '/api': 'http://localhost:3000/',
+      '/spotifyAuth': 'http://localhost:3000/',
     },
     publicPath: '/build/',
   },

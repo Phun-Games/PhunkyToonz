@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 // import styled from 'styled-components';
 import { SpotifyBtn, Button, Label, Title, Input } from './StyledElements';
-import { CLIENT_ID, CLIENT_SECRET } from './sensitive.js';
 
 // import CLIENT_SECRET from './sensitive.js';
 // import CLIENT_ID from './sensitive.js';
 
 const Login = (props) => {
   const spotifyLogin = (e) => {
-    fetch(
-      `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=token&redirect_uri=localhost%3A8080%2Ftest`
-    )
+    // fetch(
+    //   `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=token&redirect_uri=https%3A%2F%2Flocalhost%3A3000%2F`
+    // )
+    //   .then((res) => res.json())
+    //   .then((result) => console.log(result));
+    fetch('/spotifyAuth')
       .then((res) => res.json())
-      .then((result) => console.log(result));
+      .then((result) => console.log(result))
+      .catch(console.log('error in spotifyAuth request'));
   };
 
   return (
