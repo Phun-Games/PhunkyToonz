@@ -19,7 +19,7 @@ const Login = (props) => {
   };
 
   return (
-    <div>
+    <div id="login-box">
       <Title>PhunkyToonz</Title>
       <div>
         {/* Enter OAuth link below */}

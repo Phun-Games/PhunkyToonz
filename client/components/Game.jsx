@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Row from './Row';
 import SongCard from './SongCard';
+import { SpotifyBtn, Button, Label, Title, Input, Container } from './StyledElements';
 
 const Game = (props) => {
   const [songs, setSongs] = useState(songsArray);
@@ -29,11 +30,13 @@ const Game = (props) => {
 
   return (
     <div>
-      <h1>hi game started</h1>
-      <SongCard key={index} song={songs[index]}/>
-      <input type="text" name="answerInput" id="answerInput" />
-      <button onClick={checkAnswer}>submit</button>
-      <button onClick={incremeintIndex}>skip</button>
+      <Container>
+        <Title>Guess these Funky Toonz</Title>
+        <SongCard key={index} song={songs[index]} />
+        <Input type="text" name="answerInput" id="answerInput" />
+        <Button onClick={checkAnswer}>submit</Button>
+        <Button onClick={incremeintIndex}>skip</Button>
+      </Container>
     </div>
 
     // need a <Timer /> component?  MAYBE NOT
