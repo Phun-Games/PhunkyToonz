@@ -51,7 +51,6 @@ router.get('/spotifyAuth', authController.spotifyAuth);
 
 router.get(
   '/spotifyToken',
-  authController.getCode,
   authController.getToken,
   (req, res) => {
     console.log('finish spotify oauth');

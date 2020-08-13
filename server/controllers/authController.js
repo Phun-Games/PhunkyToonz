@@ -1,25 +1,15 @@
 const fetch = require('node-fetch');
 const { CLIENT_ID, CLIENT_SECRET } = require('../models/sensitive.js');
 const db = require('../models/userModel');
-const url = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=https%3A%2F%2Flocalhost%3A${
-  process.env.NODE_ENV === 'production' ? '3000' : '8080'
-}%2F`
+// const superagent = require('superagent');
+const REDIRECT_URI = `http://localhost:${process.env.NODE_ENV === "production" ? "3000" : "8080"}/api/spotifyToken/`
+
 const authController = {};
 // note: localhost redirect_uri should be 'http' not 'https'
 authController.spotifyAuth = (req, res, next) => {
   console.log('spotify auth get request received');
-<<<<<<< HEAD
-  res
-    // .setHeader('Location', url)
-    // .setHeader('Content-Length', '0')
-    // .set({ 'X-Redirect': url })
-    // .status(200)
-    .redirect(url);
-=======
   res.redirect(
-    `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A${
-    process.env.NODE_ENV === 'production' ? '3000' : '8080'
-    }%2Fapi%2FspotifyToken%2F`
+    `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}`
   );
   // .then((res) => res.json())
   // .then((json) => {
@@ -27,60 +17,46 @@ authController.spotifyAuth = (req, res, next) => {
   //   return next();
   // });
 };
-authController.getCode = (req, res, next) => {
-  console.log('callback from spotify hit getCode middleware!!!!!!');
-  const { code, state } = req.query;
-  console.log('the CODE FROM QUERY STRING: ', code);
-  console.log('STATE********', state);
-  console.log('REQ QUERY**********', req.query);
-  res.locals.code = code;
-  return next();
-};
-
-// const reqObj = {
-//   // grant_type: 'authorization_code',
-//   // code: res.locals.code,
-//   client_id: CLIENT_ID,
-//   client_secret: CLIENT_SECRET,
-//   // redirect_uri: `http%3A%2F%2Flocalhost%3A${
-//   //   process.env.NODE_ENV === 'production' ? '3000' : '8080'
-//   // }%2Fapi%2FspotifyToken%2F`,
-// };
 
 authController.getToken = (req, res, next) => {
+
   console.log('inside gettoken middleware**************');
   const reqObj = {
     grant_type: "authorization_code",
-    redirect_uri: `http%3A%2F%2Flocalhost%3A${
-      process.env.NODE_ENV === 'production' ? '3000' : '8080'
-      }%2Fapi%2FspotifyToken%2F`,
-    code: res.locals.code,
+    redirect_uri: REDIRECT_URI,
+    code: req.query.code,
     client_id: CLIENT_ID,
     client_secret: CLIENT_SECRET,
   };
-  console.log('GRANT TYPE******', reqObj.grant_type);
-  console.log('res.locals.code*********', res.locals.code);
 
-  fetch(`https://accounts.spotify.com/api/token/`, {
-    method: 'POST',
-    // header: {Authorization: `Basic base64 encoded ${CLIENT_ID}:${CLIENT_SECRET}`},
-    headers: {
+  superagent
+    .post('https://accounts.spotify.com/api/token')
+    .send(reqObj)
+    .set('Content-Type', 'application/x-www-form-urlencoded')
+    .then((data) => {
+      const { access_token } = data.body;
+      console.log("ACCESS TOKEN*******", access_token);
+    })
+    .catch((err) => {
+      next({
+        err,
+      });
+    });
 
-      // Authorization: `Basic *<base64 encoded ${CLIENT_ID}:${CLIENT_SECRET}>*`,
-      'Content-Type': 'application/json',
-      // Accept: 'application/json',
-    },
-    params: reqObj,
-  })
-    .then((res) => res.json())
-    .then((result) => console.log(result))
-    .catch((err) => console.log('error in getToken middleware', err));
->>>>>>> 82f29cd89e3795202f325cfaf20d1049cf787df2
+  // fetch("https://accounts.spotify.com/api/token", {
+  //   method: 'post',
+  //   headers: {
+  //     'Content-Type': 'application/x-www-form-urlencoded',
+  //   },
+  //   body: JSON.stringify(reqObj),
+  // })
+  //   .then((result) => console.log(result))
+  //   .catch((err) => console.log('error in getToken middleware', err));
 };
 
-// authController.authQueryString = (req, res, next) => {
-//   const { code } = req.params;
-// }
+authController.authQueryString = (req, res, next) => {
+  const { code } = req.params;
+}
 
 authController.verifyUser = (req, res, next) => {
   const { user, pass } = req.body;
