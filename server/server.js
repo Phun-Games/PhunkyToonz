@@ -29,10 +29,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieparser());
 
+
 /**
  * handle requests for static files
  */
-app.use('/folder', express.static(path.join(__dirname, '../folder')));
+app.use('/build', () => {
+  express.static(path.join(__dirname, '../build'));
+});
+
 
 /**
  * functional routes
@@ -105,7 +109,7 @@ app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express global error handler caught unknown middleware error',
     status: 400,
-    message: { err: 'An error occurred' },
+    message: { err: 'An error occurred, this msg is from global err handler' },
   };
   const errObj = Object.assign(defaultErr, err);
   console.log(errObj);

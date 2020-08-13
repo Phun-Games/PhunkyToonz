@@ -8,7 +8,7 @@ authController.spotifyAuth = (req, res, next) => {
   console.log('spotify auth get request received');
   res.redirect(
     `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A${
-      process.env.NODE_ENV === 'production' ? '3000' : '8080'
+    process.env.NODE_ENV === 'production' ? '3000' : '8080'
     }%2Fapi%2FspotifyToken%2F`
   );
   // .then((res) => res.json())
@@ -27,16 +27,26 @@ authController.getCode = (req, res, next) => {
   return next();
 };
 
+// const reqObj = {
+//   // grant_type: 'authorization_code',
+//   // code: res.locals.code,
+//   client_id: CLIENT_ID,
+//   client_secret: CLIENT_SECRET,
+//   // redirect_uri: `http%3A%2F%2Flocalhost%3A${
+//   //   process.env.NODE_ENV === 'production' ? '3000' : '8080'
+//   // }%2Fapi%2FspotifyToken%2F`,
+// };
+
 authController.getToken = (req, res, next) => {
   console.log('inside gettoken middleware**************');
   const reqObj = {
-    grant_type: 'authorization_code',
-    // code: res.locals.code,
+    grant_type: "authorization_code",
+    redirect_uri: `http%3A%2F%2Flocalhost%3A${
+      process.env.NODE_ENV === 'production' ? '3000' : '8080'
+      }%2Fapi%2FspotifyToken%2F`,
+    code: res.locals.code,
     client_id: CLIENT_ID,
     client_secret: CLIENT_SECRET,
-    // redirect_uri: `http%3A%2F%2Flocalhost%3A${
-    //   process.env.NODE_ENV === 'production' ? '3000' : '8080'
-    // }%2Fapi%2FspotifyToken%2F`,
   };
   console.log('GRANT TYPE******', reqObj.grant_type);
   console.log('res.locals.code*********', res.locals.code);
@@ -45,17 +55,12 @@ authController.getToken = (req, res, next) => {
     method: 'POST',
     // header: {Authorization: `Basic base64 encoded ${CLIENT_ID}:${CLIENT_SECRET}`},
     headers: {
-      // Authorization:
-      //   'Basic ' +
-      //   CryptoJS.enc.Base64.stringify(
-      //     CryptoJS.enc.Utf8.parse(`${CLIENT_ID}:${CLIENT_SECRET}`)
-      //   ),
+
       // Authorization: `Basic *<base64 encoded ${CLIENT_ID}:${CLIENT_SECRET}>*`,
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/json',
       // Accept: 'application/json',
     },
-    grant_type: 'authorization_code',
-    params: JSON.stringify(reqObj),
+    params: reqObj,
   })
     .then((res) => res.json())
     .then((result) => console.log(result))
