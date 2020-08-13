@@ -14,14 +14,15 @@ import controllers
 // const someController = require('./controllers/someController');
 const authController = require('./controllers/authController');
 
-app.use((req, res, next) => {
-  console.log(`
-  ********* FLOW TEST *********\n
-  METHOD: ${req.method}\n
-  URL: ${req.url}\n
-  BODY: ${JSON.stringify(req.body)}\n`);
-  return next();
-});
+// app.use((req, res, next) => {
+//   console.log(`
+//   ********* FLOW TEST *********\n
+//   METHOD: ${req.method}\n
+//   URL: ${req.url}\n
+//   BODY: ${JSON.stringify(req.body)}\n`);
+//   return next();
+// });
+
 /**
  * global parsers
  */
