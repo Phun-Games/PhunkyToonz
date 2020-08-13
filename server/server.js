@@ -14,14 +14,15 @@ import controllers
 // const someController = require('./controllers/someController');
 const authController = require('./controllers/authController');
 
-app.use((req, res, next) => {
-  console.log(`
-  ********* FLOW TEST *********\n
-  METHOD: ${req.method}\n
-  URL: ${req.url}\n
-  BODY: ${JSON.stringify(req.body)}\n`);
-  return next();
-});
+// app.use((req, res, next) => {
+//   console.log(`
+//   ********* FLOW TEST *********\n
+//   METHOD: ${req.method}\n
+//   URL: ${req.url}\n
+//   BODY: ${JSON.stringify(req.body)}\n`);
+//   return next();
+// });
+
 /**
  * global parsers
  */
@@ -34,6 +35,7 @@ app.use(cookieparser());
  * handle requests for static files
  */
 app.use('/build', express.static(path.join(__dirname, '../build')));
+app.use('/mp3', express.static(path.join(__dirname, '../mp3')));
 
 
 /**
