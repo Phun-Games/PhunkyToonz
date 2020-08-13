@@ -1,21 +1,19 @@
 const fetch = require('node-fetch');
 const { CLIENT_ID, CLIENT_SECRET } = require('../models/sensitive.js');
 const db = require('../models/userModel');
-
+const url = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=https%3A%2F%2Flocalhost%3A${
+  process.env.NODE_ENV === 'production' ? '3000' : '8080'
+}%2F`
 const authController = {};
 
 authController.spotifyAuth = (req, res, next) => {
   console.log('spotify auth get request received');
-  fetch(
-    `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=https%3A%2F%2Flocalhost%3A${
-      process.env.NODE_ENV === 'production' ? '3000' : '8080'
-    }%2F`
-  )
-    .then((res) => res.json())
-    .then((json) => {
-      console.log(json);
-      return next();
-    });
+  res
+    // .setHeader('Location', url)
+    // .setHeader('Content-Length', '0')
+    // .set({ 'X-Redirect': url })
+    // .status(200)
+    .redirect(url);
 };
 
 authController.verifyUser = (req, res, next) => {

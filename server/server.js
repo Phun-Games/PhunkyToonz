@@ -33,7 +33,8 @@ app.use(cookieparser());
 /**
  * handle requests for static files
  */
-app.use('/folder', express.static(path.join(__dirname, '../folder')));
+app.use('/build', express.static(path.join(__dirname, '../build')));
+
 
 /**
  * functional routes
