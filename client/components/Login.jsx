@@ -19,8 +19,9 @@ const Login = (props) => {
   };
 
   return (
-    <div id="login-box">
-      <Title>PhunkyToonz</Title>
+    <div id="login-page">
+      <div id="login-box">
+        <Title><span id="gradient-text"></span>PhunkyToonz</span></Title>
       <div>
         {/* Enter OAuth link below */}
         {/* Note: We were getting a CORS-related error, and resolved it by using an <a> tag */}
@@ -29,20 +30,26 @@ const Login = (props) => {
         </a>
       </div>
       <div>
-        <div>
-          <Label>Username:</Label>
-          <Input type="text" />
+        <div id="un-pw">
+          <div>
+            <Label>Username:</Label>
+            <Input type="text" />
+          </div>
+          <div>
+            <Label>Password:</Label>
+            <Input type="text" />
+          </div>
         </div>
         <div>
-          <Label>Password:</Label>
-          <Input type="text" />
-        </div>
-        <div>
-          <Button>Register</Button>
-          <Button>Login</Button>
+          <Button class="un-pw-button">Register</Button>
+          <Button class="un-pw-button">Login</Button>
         </div>
       </div>
+
     </div>
+    <img id="dancingman" src="https://i.pinimg.com/originals/57/e2/09/57e209296e586933febadf06e271a3d3.gif"></img>
+    <img id="jackblack" src="https://media0.giphy.com/media/m9cyUUQ548jLLUvwR9/source.gif"></img>
+    </div >
   );
 };
 
