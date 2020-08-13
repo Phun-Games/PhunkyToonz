@@ -14,7 +14,6 @@ import controllers
 // const someController = require('./controllers/someController');
 const authController = require('./controllers/authController');
 
-
 app.use((req, res, next) => {
   console.log(`
   ********* FLOW TEST *********\n
@@ -30,17 +29,19 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieparser());
 
+
 /**
  * handle requests for static files
  */
-app.use('/folder', express.static(path.join(__dirname, '../folder')));
+app.use('/build', express.static(path.join(__dirname, '../build')));
+
 
 /**
  * functional routes
  */
 app.use('/api', apiRouter);
 
-// app.get('/spotifyAuth', authController.spotifyAuth, (req, res) => {
+// app.get('/spotifyAuth', (req, res) => {
 //   res.status(200).send('got a response back :)!');
 // });
 
@@ -48,30 +49,30 @@ app.use('/api', apiRouter);
  * signin routings
  */
 // check if user exists, check if
-app.post(
-  '/login',
-  authController.verifyUser,
-  authController.setCookie,
-  (req, res) => {
-    console.log('access granted');
-    // console.log('form content: ', req.body); // -> {user: "", pass: ""}
-    res.redirect('./secret');
-  }
-);
+// app.post(
+//   '/login',
+//   authController.verifyUser,
+//   authController.checkCookie,
+//   (req, res) => {
+//     console.log('access granted');
+//     // console.log('form content: ', req.body); // -> {user: "", pass: ""}
+//     res.redirect('./secret');
+//   }
+// );
 
 /*
  * signin routings
  */
-app.post(
-  '/signup',
-  authController.verifyUser,
-  authController.setCookie,
-  (req, res) => {
-    console.log('access granted');
-    // console.log('form content: ', req.body); // -> {user: "", pass: ""}
-    res.redirect('./secret');
-  }
-);
+// app.post(
+//   '/signup',
+//   authController.verifyUser,
+//   authController.setCookie,
+//   (req, res) => {
+//     console.log('access granted');
+//     // console.log('form content: ', req.body); // -> {user: "", pass: ""}
+//     res.redirect('./secret');
+//   }
+// );
 
 // app.get('/game', (req, res) => {
 //   res.sendFile(path.join(__dirname, '../client/index.html'));
@@ -80,8 +81,14 @@ app.post(
 /*
  * root routes index.html and game.html
  */
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/index.html'));
+app.get('/',
+  // authController.checkCookie,
+  (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/index.html'));
+  });
+
+app.get('/checkCookie', authController.verifyCookie, (req, res) => {
+  res.status(200).json({ sessionActive: true });
 });
 
 //  ------------------------------------------------------------
@@ -106,7 +113,7 @@ app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express global error handler caught unknown middleware error',
     status: 400,
-    message: { err: 'An error occurred' },
+    message: { err: 'An error occurred, this msg is from global err handler' },
   };
   const errObj = Object.assign(defaultErr, err);
   console.log(errObj);

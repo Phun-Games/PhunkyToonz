@@ -28,12 +28,14 @@
   "dependencies": {
     "cookie-parser": "^1.4.5",
     "express": "^4.12.3",
+    "js-cookie": "^2.2.1",
     "node-fetch": "^2.6.0",
     "pg": "^8.3.0",
     "react": "^16.2.0",
     "react-dom": "^16.3.1",
     "react-router-dom": "^5.2.0",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "superagent": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.3",

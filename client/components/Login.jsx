@@ -14,7 +14,7 @@ const Login = (props) => {
     //   .then((result) => console.log(result));
     fetch('/api/spotifyAuth')
       .then((res) => res.json())
-      .then((result) => console.log(result))
+      .then((result) => props.changeLoginStatus())
       .catch(console.log('error in spotifyAuth request'));
   };
 
@@ -23,7 +23,10 @@ const Login = (props) => {
       <Title>PhunkyToonz</Title>
       <div>
         {/* Enter OAuth link below */}
-        <SpotifyBtn onClick={spotifyLogin}>Log in with Spotify</SpotifyBtn>
+        {/* Note: We were getting a CORS-related error, and resolved it by using an <a> tag */}
+        <a href="/api/spotifyAuth">
+          <SpotifyBtn>Log in with Spotify</SpotifyBtn>
+        </a>
       </div>
       <div>
         <div>
