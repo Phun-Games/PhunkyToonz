@@ -12,19 +12,21 @@ const pool = new Pool({
 /*
 CREATE TABLE Users (
     id SERIAL PRIMARY KEY,
+    session_id varchar(255),
     username varchar(255),
     password varchar(255),
     hiscore int
 );
 
 CREATE TABLE Session (
-    id int,
+    id SERIAL PRIMARY KEY,
+    session_id varchar(255),
     last_activity timestamp default current_timestamp
 );
 
 CREATE TABLE Current_game (
     id SERIAL PRIMARY KEY,
-    session_id int,
+    session_id varchar(255),
     song1 varchar(255),
     song2 varchar(255),
     song3 varchar(255),
