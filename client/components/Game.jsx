@@ -13,7 +13,7 @@ const Game = (props) => {
     fetch('/api/song')
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
+        console.log('***************ANSWERS***********',result);
         return setSongs(result)
       })
       .catch(console.log('error in Game component fetch request'));
@@ -60,6 +60,8 @@ const Game = (props) => {
 };
 
 export default Game;
+
+// var songTest = ['test', 'https://drive.google.com/file/d/18R6xcYixBegAjqVEOrxxe_xr6TXshISI/view']
 
 var songsArray = [
   ['Shape of You',

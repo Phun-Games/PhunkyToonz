@@ -21,7 +21,7 @@ const Login = (props) => {
   return (
     <div id="login-page">
       <div id="login-box">
-        <Title><span id="gradient-text"></span>PhunkyToonz</span></Title>
+        <Title>PhunkyToonz</Title>
       <div>
         {/* Enter OAuth link below */}
         {/* Note: We were getting a CORS-related error, and resolved it by using an <a> tag */}
