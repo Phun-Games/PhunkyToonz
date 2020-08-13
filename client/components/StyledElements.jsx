@@ -11,7 +11,8 @@ export const SpotifyBtn = styled.button`
   display: inline-block;
   padding: 0.25em 1em;
   font-family: 'Sniglet', cursive;
-  font-size: 14px;
+  font-size: 15px;
+  box-shadow: 2px 2px 2px 2px gray;
 `;
 
 export const Button = styled.button`
@@ -95,8 +96,12 @@ export const Audio = styled.audio`
 
 export const GameContainer = styled.div`
   text-align: center;
-  border: 20px dotted lavender;
-  background: transparent;
+  border: 20px dotted #b6fc03;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+  padding: 30px;
+  margin: 30px;
+
 `;
 
 export const Score = styled.h4`

@@ -6,6 +6,11 @@ body {
   text-align: center;
 }
 
+#page-title {
+  animation: shake 2s;
+  animation-iteration-count: infinite;
+}
+
 #login-box {
   margin-top: 150px;
   background-color: rgba(255, 255, 255, 0.5);
@@ -15,6 +20,7 @@ body {
   text-align: center;
   background-image: url('https://media2.giphy.com/media/KzikBkhzLyVOdpZm20/giphy.gif');
   background-size: 100px 100px;
+  box-shadow: 1px 1px 5px 1px rgb(131, 241, 158);
 }
 
 
@@ -27,7 +33,7 @@ body {
 }
 
 #dancingman {
-margin: 10px;
+margin: 30px;
 height: 300px;
 width: auto
 }
@@ -53,8 +59,8 @@ width: auto
 }
 
 #un-pw {
-margin-top: 10px;
-margin-bottom: 10px;
+margin-top: 12px;
+margin-bottom: 12px;
 }
 
 #main-button {
@@ -79,4 +85,27 @@ h4 {
 
 #phunky-toonz {
   color: white;
+}
+
+#dj-cat {
+  margin: 0;
+  position: absolute;
+  right: 0;
+}
+
+#game-title {
+  color: rgb(255, 17, 116);
+  letter-spacing: 5px;
+}
+
+#song-name {
+  font-family: 'Sniglet', cursive;
+  font-size: 16px;
+  color: #3300ff;
+  text-shadow: 1px 1px black;
+  letter-spacing: 3px;
+}
+
+#guess-input {
+  margin: 20px;
 }
