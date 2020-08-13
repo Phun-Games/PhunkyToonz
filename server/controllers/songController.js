@@ -32,7 +32,7 @@ songController.processedSong = (req, res, next) => {
  
   for (ii = 0; ii < list.length; ii++) {
     let index = list[ii].pop();
-    list[ii][1] = `http://localhost:8080/mp3/${index}.mp3}`
+    list[ii][1] = `http://localhost:8080/mp3/${index}.mp3`;
   }
   return next();
   // stub function
