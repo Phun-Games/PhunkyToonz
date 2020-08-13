@@ -19,8 +19,11 @@ router.get(
   '/song',
   songController.validSong,
   songController.randomizeSong,
-  songController.writeToDb,
-  (req, res) => res.status(200).json(res.locals.songURLs)
+  // dan's receiving res.locals.songList = [ [1,2], [1,2] ... ]
+  // songController.processedSong,
+  // output => [ [1,2,3], [1,2,3] ... ]
+  // songController.writeToDb,
+  (req, res) => res.status(200).json(res.locals.songList)
 );
 
 // POST "api/song"
