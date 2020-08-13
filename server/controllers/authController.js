@@ -1,9 +1,10 @@
 const fetch = require('node-fetch');
 const { CLIENT_ID, CLIENT_SECRET } = require('../models/sensitive.js');
 const db = require('../models/userModel');
-// const superagent = require('superagent');
+const superagent = require('superagent');
 const REDIRECT_URI = `http://localhost:${process.env.NODE_ENV === "production" ? "3000" : "8080"}/api/spotifyToken/`
 
+// remember to keep code clean; we created a REDIRECT_URI variable to clean up the redirect URL
 const authController = {};
 // note: localhost redirect_uri should be 'http' not 'https'
 authController.spotifyAuth = (req, res, next) => {
@@ -36,11 +37,12 @@ authController.getToken = (req, res, next) => {
     .then((data) => {
       const { access_token } = data.body;
       console.log("ACCESS TOKEN*******", access_token);
+      res.locals.access_token = access_token;
+      return next();
     })
     .catch((err) => {
-      next({
-        err,
-      });
+      console.log('err in getToken middleware, superagent')
+      return next({ err });
     });
 
   // fetch("https://accounts.spotify.com/api/token", {
@@ -70,7 +72,7 @@ authController.verifyUser = (req, res, next) => {
 authController.setCookie = (req, res, next) => {
   // query the Users table with req.username
   // const tokenValue  =
-  res.cookie('token', 'tokenValue');
+  res.cookie('token', res.locals.access_token);
   return next();
 };
 

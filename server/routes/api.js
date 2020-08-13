@@ -40,21 +40,22 @@ router.post(
 // use token/session_id to query Users table
 // write query to update hiscore in table
 // send back hiscore
-router.post('/hiscore', (req, res) => {});
+router.post('/hiscore', (req, res) => { });
 
 // GET 'api/hiscore'
 // use token/session_id to query Users table
 // send back hiscore
-router.get('/hiscore', (req, res) => {});
+router.get('/hiscore', (req, res) => { });
 
 router.get('/spotifyAuth', authController.spotifyAuth);
 
 router.get(
   '/spotifyToken',
   authController.getToken,
+  authController.setCookie,
   (req, res) => {
     console.log('finish spotify oauth');
-    res.status(200).sendFile(path.join(__dirname, '../../client/index.html'));
+    res.status(200).redirect('/');
   }
 );
 

@@ -49,30 +49,30 @@ app.use('/api', apiRouter);
  * signin routings
  */
 // check if user exists, check if
-app.post(
-  '/login',
-  authController.verifyUser,
-  authController.setCookie,
-  (req, res) => {
-    console.log('access granted');
-    // console.log('form content: ', req.body); // -> {user: "", pass: ""}
-    res.redirect('./secret');
-  }
-);
+// app.post(
+//   '/login',
+//   authController.verifyUser,
+//   authController.checkCookie,
+//   (req, res) => {
+//     console.log('access granted');
+//     // console.log('form content: ', req.body); // -> {user: "", pass: ""}
+//     res.redirect('./secret');
+//   }
+// );
 
 /*
  * signin routings
  */
-app.post(
-  '/signup',
-  authController.verifyUser,
-  authController.setCookie,
-  (req, res) => {
-    console.log('access granted');
-    // console.log('form content: ', req.body); // -> {user: "", pass: ""}
-    res.redirect('./secret');
-  }
-);
+// app.post(
+//   '/signup',
+//   authController.verifyUser,
+//   authController.setCookie,
+//   (req, res) => {
+//     console.log('access granted');
+//     // console.log('form content: ', req.body); // -> {user: "", pass: ""}
+//     res.redirect('./secret');
+//   }
+// );
 
 // app.get('/game', (req, res) => {
 //   res.sendFile(path.join(__dirname, '../client/index.html'));
@@ -81,9 +81,11 @@ app.post(
 /*
  * root routes index.html and game.html
  */
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/index.html'));
-});
+app.get('/',
+  // authController.checkCookie,
+  (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/index.html'));
+  });
 
 //  ------------------------------------------------------------
 

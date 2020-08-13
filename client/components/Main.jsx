@@ -4,32 +4,31 @@ import Game from './Game';
 
 const Main = (props) => {
   const [startGame, setStartGame] = useState(false);
+  const [score, setScore] = useState(0);
+
+  const incrementScore = () => {
+    setScore(score + 1);
+  }
 
   const start = () => {
+    if (!startGame) setScore(0);
     setStartGame(!startGame);
   }
 
   if (startGame) {
     return (
-      <Game />
+      <>
+        <Game start={start} incrementScore={incrementScore}/>
+        <h4>your score is{score}</h4>
+      </>
     )
   }
-  // gameInProgress
-  // const [gameInProgress, setGameInProgress] = useState(false);
 
-  // const gameProgress = () => {
-  //   setGameInProgress(!gameInProgress);
-  // };
-
-  // if (gameStatus === 'gameOver') {
-  //   return <GameSummary />;
-  // }
-
-  // game in progress
   return (
     <div>
       <h1>this is the Main component aka the LOBBY</h1>
       <button style={{'cursor': 'pointer'}} onClick={() => start()}>Start Game!!</button>
+      <h4>your score is{score}</h4>
       
     </div>
   );
