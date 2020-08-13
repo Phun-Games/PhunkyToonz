@@ -14,7 +14,6 @@ import controllers
 // const someController = require('./controllers/someController');
 const authController = require('./controllers/authController');
 
-
 app.use((req, res, next) => {
   console.log(`
   ********* FLOW TEST *********\n
@@ -30,6 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieparser());
 
+
 /**
  * handle requests for static files
  */
@@ -41,7 +41,7 @@ app.use('/build', express.static(path.join(__dirname, '../build')));
  */
 app.use('/api', apiRouter);
 
-// app.get('/spotifyAuth', authController.spotifyAuth, (req, res) => {
+// app.get('/spotifyAuth', (req, res) => {
 //   res.status(200).send('got a response back :)!');
 // });
 
@@ -107,7 +107,7 @@ app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express global error handler caught unknown middleware error',
     status: 400,
-    message: { err: 'An error occurred' },
+    message: { err: 'An error occurred, this msg is from global err handler' },
   };
   const errObj = Object.assign(defaultErr, err);
   console.log(errObj);
