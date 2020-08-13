@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Row from './Row';
 import SongCard from './SongCard';
-import { SpotifyBtn, Button, Label, Title, Input, GameContainer, GameInput, } from './StyledElements';
+import { SpotifyBtn, Button, Label, Title, TitleMain, Input, GameContainer, GameInput, } from './StyledElements';
 
 const Game = (props) => {
   // const [songs, setSongs] = useState(songsArray);
@@ -45,13 +45,18 @@ const Game = (props) => {
   return (
     <div>
       <GameContainer>
-        <Title>Guess these Funky Toonz</Title>
+        <TitleMain id="game-title">Guess these PhUnKy ToOnZ</TitleMain>
 
-        {songs ?  <SongCard key={index} song={songs[index]} /> : (<></>) }
-        <Input type="text" name="answerInput" id="answerInput" />
+        {songs ? <SongCard key={index} song={songs[index]} /> : (<></>)}
+        <div id="guess-input">
+          <span id="song-name">ENTER SONG TITLE  </span>
+          <Input type="text" name="answerInput" id="answerInput" />
 
-        <Button onClick={checkAnswer}>submit</Button>
-        <Button onClick={incremeintIndex}>skip</Button>
+          <Button onClick={checkAnswer}>submit</Button>
+          <Button onClick={incremeintIndex}>skip</Button>
+        </div>
+        <br />
+        <img id="dj-cat" src="https://media2.giphy.com/media/3ohhwu14nQs3sOKrDO/giphy.gif" />
       </GameContainer>
     </div>
 

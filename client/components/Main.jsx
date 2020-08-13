@@ -20,7 +20,7 @@ const Main = (props) => {
     return (
       <>
         <Game start={start} incrementScore={incrementScore} />
-        <Score>SCORE: {score}</Score>
+        <Score>YOUR SCORE: {score}</Score>
       </>
     )
   }
