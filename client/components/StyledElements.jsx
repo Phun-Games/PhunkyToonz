@@ -77,10 +77,15 @@ export const TitleMain = styled.h1`
   font-size: 5vw;
   text-shadow: 3px 3px black;
   letter-spacing: 3px;
+  padding: 30px;
 `;
 
 export const Input = styled.input`
   margin: 0.3em;
+  // width: 500px;
+  // height: 40px;
+  // // border-radius: 10px;
+  border: 1px solid brown;
 `;
 
 export const GameInput = styled.input`
@@ -101,6 +106,7 @@ export const GameContainer = styled.div`
   border-radius: 50px;
   padding: 30px;
   margin: 30px;
+  box-shadow: 1px 1px 5px 1px rgb(131, 241, 158);
 
 `;
 

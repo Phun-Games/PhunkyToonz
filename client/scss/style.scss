@@ -100,12 +100,31 @@ h4 {
 
 #song-name {
   font-family: 'Sniglet', cursive;
-  font-size: 16px;
+  font-size: 18px;
   color: #3300ff;
   text-shadow: 1px 1px black;
   letter-spacing: 3px;
 }
 
 #guess-input {
-  margin: 20px;
+  margin: 30px;
+}
+
+#submit-button, #skip-button {
+  height: 50px;
+  width: auto;
+  font-family: 'Sniglet', cursive;
+  font-size: 16px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#answerInput {
+  width: 500px;
+  height: 40px;
+  border-radius: 10px;
+  border: 5px dotted #FF370F;
+  font-family: 'Sniglet', cursive;
+  font-size: 18px;
+  color: blue;
 }

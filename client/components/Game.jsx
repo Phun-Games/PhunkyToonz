@@ -13,7 +13,7 @@ const Game = (props) => {
     fetch('/api/song')
       .then((res) => res.json())
       .then((result) => {
-        console.log('***************ANSWERS***********',result);
+        console.log('***************ANSWERS***********', result);
         return setSongs(result)
       })
       .catch(console.log('error in Game component fetch request'));
@@ -52,8 +52,8 @@ const Game = (props) => {
           <span id="song-name">ENTER SONG TITLE  </span>
           <Input type="text" name="answerInput" id="answerInput" />
 
-          <Button onClick={checkAnswer}>submit</Button>
-          <Button onClick={incremeintIndex}>skip</Button>
+          <Button id="submit-button" onClick={checkAnswer}>submit</Button>
+          <Button id="skip-button" onClick={incremeintIndex}>skip</Button>
         </div>
         <br />
         <img id="dj-cat" src="https://media2.giphy.com/media/3ohhwu14nQs3sOKrDO/giphy.gif" />
