@@ -14,7 +14,6 @@ import controllers
 // const someController = require('./controllers/someController');
 const authController = require('./controllers/authController');
 
-
 app.use((req, res, next) => {
   console.log(`
   ********* FLOW TEST *********\n
@@ -40,7 +39,7 @@ app.use('/folder', express.static(path.join(__dirname, '../folder')));
  */
 app.use('/api', apiRouter);
 
-// app.get('/spotifyAuth', authController.spotifyAuth, (req, res) => {
+// app.get('/spotifyAuth', (req, res) => {
 //   res.status(200).send('got a response back :)!');
 // });
 
