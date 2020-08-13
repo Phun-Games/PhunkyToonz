@@ -26,16 +26,17 @@ songController.randomizeSong = (req, res, next) => {
   return next();
 };
 
-// songController.processedSong = (req, res, next) => {
-//   let list = res.locals.songList;
-//   for (ii = 0; ii < list.length; ii++) {
-//     list[ii][1] = processedSongs[list[ii][1]];
-//     // app.use(static())
-//   }
-//   return next();
-//   // stub function
-// };
-
+songController.processedSong = (req, res, next) => {
+  
+  let list = res.locals.songList;
+ 
+  for (ii = 0; ii < list.length; ii++) {
+    let index = list[ii].pop();
+    list[ii][1] = `http://localhost:8080/mp3/${index}.mp3}`
+  }
+  return next();
+  // stub function
+};
 
 
 // do this when i wake up

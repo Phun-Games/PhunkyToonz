@@ -20,7 +20,7 @@ router.get(
   songController.validSong,
   songController.randomizeSong,
   // dan's receiving res.locals.songList = [ [1,2], [1,2] ... ]
-  // songController.processedSong,
+  songController.processedSong,
   // output => [ [1,2,3], [1,2,3] ... ]
   // songController.writeToDb,
   (req, res) => res.status(200).json(res.locals.songList)
