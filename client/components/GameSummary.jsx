@@ -14,7 +14,7 @@ const GameSummary = () => {
         {}
       </div>
       <div>
-        <p>Your Score: </p>
+        <p>YOUR SCORE: </p>
         {}
       </div>
     </div>

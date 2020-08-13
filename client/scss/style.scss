@@ -2,6 +2,10 @@ body {
   background-image: url('https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80');
 }
 
+#login-page {
+  text-align: center;
+}
+
 #login-box {
   margin-top: 150px;
   background-color: rgba(255, 255, 255, 0.5);
@@ -9,4 +13,70 @@ body {
   border-radius: 35px;
   border: 15px rgb(230, 255, 6) dotted;
   text-align: center;
+  background-image: url('https://media2.giphy.com/media/KzikBkhzLyVOdpZm20/giphy.gif');
+  background-size: 100px 100px;
+}
+
+
+#login-box:hover {
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake 0.5s;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+}
+
+#dancingman {
+margin: 10px;
+height: 300px;
+width: auto
+}
+
+#jackblack {
+  margin: 10px;
+  height: 300px;
+  width: auto;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-5deg); }
+  20% { transform: translate(-3px, 0px) rotate(5deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(5deg); }
+  50% { transform: translate(-1px, 2px) rotate(-5deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-5deg); }
+  80% { transform: translate(-1px, -1px) rotate(5deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-5deg); }
+}
+
+#un-pw {
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+#main-button {
+  text-align: center;
+  margin: 80px;
+}
+
+h4 {
+  font-size: 4vw;
+  font-family: 'Luckiest Guy', cursive;
+  color: yellow;
+  margin: 20px;
+  text-shadow: 5px 5px black;
+  letter-spacing: 5px;
+}
+
+#click-to-start {
+  color: red;
+  font-size: 80px;
+  letter-spacing: 5px;
+}
+
+#phunky-toonz {
+  color: white;
 }
