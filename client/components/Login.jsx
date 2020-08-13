@@ -14,7 +14,7 @@ const Login = (props) => {
     //   .then((result) => console.log(result));
     fetch('/api/spotifyAuth')
       .then((res) => res.json())
-      .then((result) => console.log(result))
+      .then((result) => props.changeLoginStatus())
       .catch(console.log('error in spotifyAuth request'));
   };
 

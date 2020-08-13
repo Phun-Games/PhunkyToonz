@@ -76,6 +76,18 @@ authController.setCookie = (req, res, next) => {
   return next();
 };
 
+authController.verifyCookie = (req, res, next) => {
+  // console.log("in verifycookie");
+  const { token } = req.cookies;
+  // console.log("ACCESS_TOKEN******", token);
+  // console.log("REQ.COOKIES******", req.cookies);
+  if (token) {
+    // console.log('verified cookie');
+    return next();
+  }
+}
+
+
 authController.checkCookie = (req, res, next) => {
   const { token } = req.cookies;
   // token is the PK
