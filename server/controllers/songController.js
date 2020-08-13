@@ -16,6 +16,7 @@ const makeNestedArray = require('../../utility/makeNestedArray');
 
 
 songController.validSong = (req, res, next) => {
+  console.log('reached valid song controller')
   res.locals.songList = availableSongs(playlistData);
   return next();
 };
@@ -24,6 +25,19 @@ songController.randomizeSong = (req, res, next) => {
   res.locals.songList = selectedSongs(res.locals.songList);
   return next();
 };
+
+songController.processedSong = (req, res, next) => {
+  
+  let list = res.locals.songList;
+ 
+  for (ii = 0; ii < list.length; ii++) {
+    let index = list[ii].pop();
+    list[ii][1] = `http://localhost:8080/mp3/${index}.mp3`;
+  }
+  return next();
+  // stub function
+};
+
 
 // do this when i wake up
 songController.writeToDb = (req, res, next) => {

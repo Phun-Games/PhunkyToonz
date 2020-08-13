@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import GameSummary from './GameSummary';
 import Game from './Game';
+import { SpotifyBtn, Button, ButtonMain, Label, Title, TitleMain, Input, Container, GameInput, Score, } from './StyledElements';
 
 const Main = (props) => {
   const [startGame, setStartGame] = useState(false);
@@ -18,19 +19,19 @@ const Main = (props) => {
   if (startGame) {
     return (
       <>
-        <Game start={start} incrementScore={incrementScore}/>
-        <h4>your score is{score}</h4>
+        <Game start={start} incrementScore={incrementScore} />
+        <Score>YOUR SCORE: {score} / 9</Score>
       </>
     )
   }
 
   return (
-    <div>
-      <h1>this is the Main component aka the LOBBY</h1>
-      <button style={{'cursor': 'pointer'}} onClick={() => start()}>Start Game!!</button>
-      <h4>your score is{score}</h4>
-      
-    </div>
+    <div id="main-button">
+
+      <ButtonMain style={{ 'cursor': 'pointer' }} onClick={() => start()}><TitleMain>Ready to GUESS THE <span id="phunky-toonz">PHUNKY TOONZ?!</span><br /><br /><span id="click-to-start">CLICK TO START!</span></TitleMain></ButtonMain>
+      <h4>YOUR SCORE: {score} / 9</h4>
+
+    </div >
   );
 };
 

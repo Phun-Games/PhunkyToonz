@@ -1,10 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Row from './Row';
 import SongCard from './SongCard';
+import { SpotifyBtn, Button, Label, Title, TitleMain, Input, GameContainer, GameInput, } from './StyledElements';
 
 const Game = (props) => {
-  const [songs, setSongs] = useState(songsArray);
+  // const [songs, setSongs] = useState(songsArray);
+  const [songs, setSongs] = useState();
   const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+
+    fetch('/api/song')
+      .then((res) => res.json())
+      .then((result) => {
+        console.log('***************ANSWERS***********', result);
+        return setSongs(result)
+      })
+      .catch(console.log('error in Game component fetch request'));
+
+  }, []);
+
 
   const incremeintIndex = () => {
     if (index === songs.length - 1) {
@@ -29,11 +44,20 @@ const Game = (props) => {
 
   return (
     <div>
-      <h1>hi game started</h1>
-      <SongCard key={index} song={songs[index]}/>
-      <input type="text" name="answerInput" id="answerInput" />
-      <button onClick={checkAnswer}>submit</button>
-      <button onClick={incremeintIndex}>skip</button>
+      <GameContainer>
+        <TitleMain id="game-title">Guess these PhUnKy ToOnZ</TitleMain>
+
+        {songs ? <SongCard key={index} song={songs[index]} /> : (<></>)}
+        <div id="guess-input">
+          <span id="song-name">ENTER SONG TITLE  </span>
+          <Input type="text" name="answerInput" id="answerInput" />
+
+          <Button id="submit-button" onClick={checkAnswer}>submit</Button>
+          <Button id="skip-button" onClick={incremeintIndex}>skip</Button>
+        </div>
+        <br />
+        <img id="dj-cat" src="https://media2.giphy.com/media/3ohhwu14nQs3sOKrDO/giphy.gif" />
+      </GameContainer>
     </div>
 
     // need a <Timer /> component?  MAYBE NOT
@@ -41,6 +65,8 @@ const Game = (props) => {
 };
 
 export default Game;
+
+// var songTest = ['test', 'https://drive.google.com/file/d/18R6xcYixBegAjqVEOrxxe_xr6TXshISI/view']
 
 var songsArray = [
   ['Shape of You',
